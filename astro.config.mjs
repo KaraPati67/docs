@@ -10,7 +10,7 @@ export default defineConfig({
 				en: 'TrucklineMP',
 				pl: 'TrucklineMP',
 			},
-			defaultLocale: 'en',
+			defaultLocale: 'root',
 			locales: {
 				root: {
 					label: 'English',
