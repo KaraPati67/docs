@@ -32,66 +32,25 @@ export default defineConfig({
 				'@fontsource-variable/geist-mono',
 				'./src/styles/marathon.css',
 			],
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			social: [
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/TrucklineMP/docs' },
+				{ icon: 'discord', label: 'Discord', href: 'https://discord.gg/trucklinemp' },
+				{ icon: 'external', label: 'Website', href: 'https://trucklinemp.com' },
+			],
 			sidebar: [
 				{
-					label: 'Getting Started',
+					slug: 'guides/getting-started',
+					label: 'Introduction',
 					translations: {
-						pl: 'Zacznij tutaj',
+						pl: 'Wprowadzenie',
 					},
-					items: [
-						{
-							slug: 'guides/getting-started',
-							label: 'Introduction',
-							translations: {
-								pl: 'Wprowadzenie',
-							},
-						},
-					],
 				},
 				{
-					label: 'Community',
+					slug: 'guides/contributing',
+					label: 'Contributing',
 					translations: {
-						pl: 'Społeczność',
+						pl: 'Współtworzenie',
 					},
-					items: [
-						{
-							slug: 'guides/rules',
-							label: 'Server Rules',
-							translations: {
-								pl: 'Zasady serwera',
-							},
-						},
-						{
-							slug: 'guides/faq',
-							label: 'FAQ',
-							translations: {
-								pl: 'FAQ',
-							},
-						},
-					],
-				},
-				{
-					label: 'Platform',
-					translations: {
-						pl: 'Platforma',
-					},
-					items: [
-						{
-							slug: 'guides/features',
-							label: 'Features',
-							translations: {
-								pl: 'Funkcje',
-							},
-						},
-						{
-							slug: 'guides/contributing',
-							label: 'Contributing',
-							translations: {
-								pl: 'Współtworzenie',
-							},
-						},
-					],
 				},
 			],
 		}),
