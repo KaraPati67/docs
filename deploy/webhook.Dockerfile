@@ -1,6 +1,6 @@
 FROM python:3-alpine
 
-RUN apk add --no-cache git docker-cli docker-cli-compose
+RUN apk add --no-cache bash git docker-cli docker-cli-compose
 
 WORKDIR /app
 COPY webhook-server.py deploy.sh ./
