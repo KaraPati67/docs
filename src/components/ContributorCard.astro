@@ -1,0 +1,115 @@
+---
+import type { Contributor } from '../data/contributors';
+
+interface Props {
+	contributor: Contributor;
+}
+
+const { contributor } = Astro.props;
+const name = contributor.displayName ?? contributor.github;
+const avatarUrl = `https://github.com/${contributor.github}.png`;
+const profileUrl = `https://github.com/${contributor.github}`;
+---
+
+<article class="contributor-card">
+	<a href={profileUrl} target="_blank" rel="noopener noreferrer" class="contributor-avatar-link">
+		<img src={avatarUrl} alt={name} width="72" height="72" class="contributor-avatar" loading="lazy" />
+	</a>
+	<div class="contributor-body">
+		<h3 class="contributor-name">
+			<a href={profileUrl} target="_blank" rel="noopener noreferrer">{name}</a>
+		</h3>
+		<p class="contributor-role">{contributor.role}</p>
+		<ul class="contributor-contributions">
+			{contributor.contributions.map((item) => <li>{item}</li>)}
+		</ul>
+		<a href={profileUrl} target="_blank" rel="noopener noreferrer" class="contributor-github">
+			@{contributor.github}
+		</a>
+	</div>
+</article>
+
+<style>
+	.contributor-card {
+		display: flex;
+		gap: 1.25rem;
+		padding: 1.25rem;
+		border: 1px solid var(--sl-color-hairline);
+		background: var(--sl-color-gray-6);
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.contributor-card:hover {
+		border-color: rgba(200, 255, 0, 0.35);
+		transform: translateY(-2px);
+	}
+
+	.contributor-avatar-link {
+		flex-shrink: 0;
+		line-height: 0;
+	}
+
+	.contributor-avatar {
+		display: block;
+		border: 2px solid var(--sl-color-hairline);
+		transition: border-color 0.2s ease;
+	}
+
+	.contributor-card:hover .contributor-avatar {
+		border-color: var(--sl-color-accent);
+	}
+
+	.contributor-body {
+		min-width: 0;
+	}
+
+	.contributor-name {
+		margin: 0 0 0.25rem;
+		font-size: var(--sl-text-lg);
+		font-weight: 800;
+		letter-spacing: -0.01em;
+	}
+
+	.contributor-name a {
+		color: var(--sl-color-white);
+		text-decoration: none;
+	}
+
+	.contributor-name a:hover {
+		color: var(--sl-color-accent);
+	}
+
+	.contributor-role {
+		margin: 0 0 0.75rem;
+		font-family: var(--sl-font-mono);
+		font-size: var(--sl-text-xs);
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--sl-color-accent);
+	}
+
+	.contributor-contributions {
+		margin: 0 0 0.75rem;
+		padding-left: 1.1rem;
+		font-size: var(--sl-text-sm);
+		color: var(--sl-color-gray-2);
+	}
+
+	.contributor-contributions li + li {
+		margin-top: 0.25rem;
+	}
+
+	.contributor-github {
+		font-family: var(--sl-font-mono);
+		font-size: var(--sl-text-xs);
+		color: var(--sl-color-gray-3);
+		text-decoration: none;
+	}
+
+	.contributor-github:hover {
+		color: var(--sl-color-accent-high);
+	}
+</style>

@@ -8,12 +8,15 @@ This site contains guides, rules, features overview, and FAQs for players. Docum
 
 To contribute translations or improve the documentation, see the [Contributing guide](src/content/docs/guides/contributing.md).
 
+Community contributors are credited on the [Contributors page](https://docs.trucklinemp.com/guides/contributors/).
+
 ## Languages
 
 - [English](https://docs.trucklinemp.com)
 - [Polish](https://docs.trucklinemp.com/pl)
 - [German](https://docs.trucklinemp.com/de)
 - [French](https://docs.trucklinemp.com/fr)
+- [Russian](https://docs.trucklinemp.com/ru)
 
 ## License
 

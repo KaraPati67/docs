@@ -1,0 +1,21 @@
+---
+title: Участники
+description: Сообщество и команда TrucklineMP, работающие над документацией.
+---
+
+import ContributorGrid from '../../../../components/ContributorGrid.astro';
+import { communityContributors, teamContributors } from '../../../../data/contributors';
+
+Документация — это совместная работа. Эти люди помогают сделать руководства TrucklineMP доступными, точными и переведёнными на разные языки.
+
+## Участники сообщества
+
+<ContributorGrid contributors={communityContributors} />
+
+## Команда Truckline
+
+<ContributorGrid contributors={teamContributors} />
+
+---
+
+Хотите увидеть своё имя здесь? Внесите перевод или улучшение и откройте pull request на [GitHub](https://github.com/TrucklineMP/docs). Подробности — в [руководстве по переводу](/ru/guides/contributing/).

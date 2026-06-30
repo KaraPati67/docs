@@ -55,6 +55,7 @@ export default defineConfig({
 			components: {
 				SiteTitle: './src/components/SiteTitle.astro',
 				Footer: './src/components/Footer.astro',
+				SidebarSublist: './src/components/SidebarSublist.astro',
 			},
 			sidebar: [
 				{
@@ -217,6 +218,14 @@ export default defineConfig({
 					label: 'Contribute',
 					collapsed: false,
 					items: [
+						{
+							slug: 'guides/contributors',
+							label: 'Contributors',
+							translations: {
+								pl: 'Współtwórcy',
+								ru: 'Участники',
+							},
+						},
 						{
 							slug: 'guides/contributing',
 							label: 'Translate Documentation',
