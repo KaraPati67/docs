@@ -11,6 +11,7 @@ export default defineConfig({
 				pl: 'TrucklineMP',
 				de: 'TrucklineMP',
 				fr: 'TrucklineMP',
+				ru: 'TrucklineMP',
 			},
 			defaultLocale: 'root',
 			locales: {
@@ -29,6 +30,10 @@ export default defineConfig({
 				fr: {
 					label: 'Français',
 					lang: 'fr',
+				},
+				ru: {
+					label: 'Русский',
+					lang: 'ru',
 				},
 			},
 			logo: {
@@ -61,6 +66,7 @@ export default defineConfig({
 							label: 'Verified VTC Program',
 							translations: {
 								pl: 'Zweryfikowany Program VTC',
+								ru: 'Программа верификации VTC',
 							},
 						},
 						{
@@ -68,6 +74,7 @@ export default defineConfig({
 							label: 'Partnered VTC Program',
 							translations: {
 								pl: 'Partnerski Program VTC',
+								ru: 'Партнёрская программа VTC',
 							},
 						},
 						{
@@ -75,6 +82,7 @@ export default defineConfig({
 							label: 'VTC Livery Guidelines',
 							translations: {
 								pl: 'Wytyczne Malowania VTC',
+								ru: 'Правила оформления окрасок VTC',
 							},
 						},
 					],
@@ -88,6 +96,7 @@ export default defineConfig({
 							label: 'General Settings',
 							translations: {
 								pl: 'Ustawienia Ogólne',
+								ru: 'Общие настройки',
 							},
 						},
 						{
@@ -95,6 +104,7 @@ export default defineConfig({
 							label: 'Roles & Permissions',
 							translations: {
 								pl: 'Role i Uprawnienia',
+								ru: 'Роли и права доступа',
 							},
 						},
 						{
@@ -102,6 +112,7 @@ export default defineConfig({
 							label: 'Member Management',
 							translations: {
 								pl: 'Zarządzanie Członkami',
+								ru: 'Управление участниками',
 							},
 						},
 						{
@@ -109,6 +120,7 @@ export default defineConfig({
 							label: 'Recruitment',
 							translations: {
 								pl: 'Rekrutacja',
+								ru: 'Набор участников',
 							},
 						},
 						{
@@ -116,6 +128,7 @@ export default defineConfig({
 							label: 'Announcements',
 							translations: {
 								pl: 'Ogłoszenia',
+								ru: 'Уведомления',
 							},
 						},
 						{
@@ -123,6 +136,7 @@ export default defineConfig({
 							label: 'Discord Verification',
 							translations: {
 								pl: 'Weryfikacja Discord',
+								ru: 'Верификация Discord',
 							},
 						},
 						{
@@ -130,6 +144,7 @@ export default defineConfig({
 							label: 'Visibility',
 							translations: {
 								pl: 'Widoczność',
+								ru: 'Видимость',
 							},
 						},
 					],
@@ -138,6 +153,7 @@ export default defineConfig({
 					label: 'Discord Bot',
 					translations: {
 						pl: 'Bot Discord',
+						ru: 'Бот Discord',
 					},
 					collapsed: false,
 					items: [
@@ -146,6 +162,7 @@ export default defineConfig({
 							label: 'Linked Roles',
 							translations: {
 								pl: 'Połączone Role',
+								ru: 'Привязанные Роли',
 							},
 						},
 					],
@@ -159,6 +176,7 @@ export default defineConfig({
 							label: 'Profile Settings',
 							translations: {
 								pl: 'Ustawienia Profilu',
+								ru: 'Настройки профиля',
 							},
 						},
 						{
@@ -166,6 +184,7 @@ export default defineConfig({
 							label: 'Account Security',
 							translations: {
 								pl: 'Bezpieczeństwo Konta',
+								ru: 'Безопасность аккаунта',
 							},
 						},
 						{
@@ -173,6 +192,7 @@ export default defineConfig({
 							label: 'Connections',
 							translations: {
 								pl: 'Połączenia',
+								ru: 'Подключённые аккаунты',
 							},
 						},
 						{
@@ -180,6 +200,7 @@ export default defineConfig({
 							label: 'Appearance & Preferences',
 							translations: {
 								pl: 'Wygląd i Preferencje',
+								ru: 'Внешний вид и предпочтения',
 							},
 						},
 						{
@@ -187,6 +208,7 @@ export default defineConfig({
 							label: 'Account Deletion',
 							translations: {
 								pl: 'Usunięcie Konta',
+								ru: 'Удаление аккаунта',
 							},
 						},
 					],
@@ -200,6 +222,7 @@ export default defineConfig({
 							label: 'Translate Documentation',
 							translations: {
 								pl: 'Tłumacz Dokumentację',
+								ru: 'Перевод документации',
 							},
 						},
 					],
