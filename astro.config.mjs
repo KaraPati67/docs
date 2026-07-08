@@ -70,6 +70,7 @@ export default defineConfig({
           label: "VTC Programs",
           translations: {
             ru: "Программы VTC",
+            de: "VTC Programme",
           },
           collapsed: false,
           items: [
@@ -79,6 +80,7 @@ export default defineConfig({
               translations: {
                 pl: "Zweryfikowany Program VTC",
                 ru: "Программа верификации VTC",
+                de: "Verifizierungsprogramm für VTCs",
               },
             },
             {
@@ -128,6 +130,7 @@ export default defineConfig({
               translations: {
                 pl: "Ustawienia Ogólne",
                 ru: "Общие настройки",
+                de: "Allgemeine VTC-Einstellungen",
               },
             },
             {
