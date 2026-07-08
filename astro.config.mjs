@@ -130,6 +130,7 @@ export default defineConfig({
               translations: {
                 pl: "Ustawienia Ogólne",
                 ru: "Общие настройки",
+                de: "Allgemeine VTC-Einstellungen",
               },
             },
             {
