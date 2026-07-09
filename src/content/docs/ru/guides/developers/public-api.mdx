@@ -40,13 +40,13 @@ Authorization: Bearer tl_YOUR_API_KEY
 | Среда | Базовый URL | Примечания |
 |-------------|----------|-------|
 | Рабочая | `https://api.trucklinemp.com` | Рекомендуется для рабочих интеграций |
-| Разработка | `https://api-dev.trucklinemp.com` | Данные для тестирования / бета-версии |
+
 | Локальная | `http://localhost:3000/api/v1` | Локальный сервер разработки веб-приложения |
 | Тот же источник | `https://trucklinemp.com/api/v1` | Используется в браузере |
 
 ### Важно: не дублируйте `/v1`
 
-Рабочие и тестовые хосты (`api.trucklinemp.com`, `api-dev.trucklinemp.com`) маршрутизируются через nginx. Запрос к:
+Рабочий хост `api.trucklinemp.com` маршрутизируется через nginx. Запрос к:
 
 ```
 https://api.trucklinemp.com/vtcs

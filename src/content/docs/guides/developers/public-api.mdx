@@ -1,8 +1,8 @@
 ---
 title: Public API
 description: Authentication, base URLs, rate limits, and endpoint overview for the TrucklineMP Public REST API.
-version: 1.2.0
-lastUpdated: 2026-07-08
+version: 1.3.0
+lastUpdated: 2026-07-10
 ---
 
 # Public API
@@ -37,18 +37,15 @@ Some endpoints return extra fields when you are logged in on trucklinemp.com and
 
 ## Base URLs
 
-Choose the base URL that matches your environment:
-
 | Environment | Base URL | Notes |
 |-------------|----------|-------|
-| Production | `https://api.trucklinemp.com` | Recommended for live integrations |
-| Development | `https://api-dev.trucklinemp.com` | Staging / beta data |
+| Production | `https://api.trucklinemp.com` | Public API hostname |
 | Local | `http://localhost:3000/api/v1` | Local Web app dev server |
 | Same-origin | `https://trucklinemp.com/api/v1` | Used by the in-browser playground |
 
 ### Important: do not double up `/v1`
 
-Production and development hostnames (`api.trucklinemp.com`, `api-dev.trucklinemp.com`) route through nginx. A request to:
+The production hostname `api.trucklinemp.com` routes through nginx. A request to:
 
 ```
 https://api.trucklinemp.com/vtcs
@@ -116,6 +113,10 @@ The OpenAPI spec at [trucklinemp.com/api/v1/openapi.json](https://trucklinemp.co
 | **Session** | `GET /session` (cookie-based session introspection) |
 
 Path parameters such as `{idOrHandle}` accept either a numeric ID or a public handle where noted in the spec.
+
+## TypeScript SDK
+
+For Node.js integrations, you can use the official client instead of hand-written `fetch` calls. See [TypeScript SDK](/guides/developers/sdk/).
 
 ## Error responses
 

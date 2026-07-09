@@ -1,0 +1,226 @@
+---
+title: TypeScript SDK
+description: Install and use the official TrucklineMP TypeScript SDK for the Public API and webhook verification.
+version: 1.0.0
+lastUpdated: 2026-07-10
+---
+
+# TypeScript SDK
+
+`@trucklinemp/sdk` is the official TypeScript and JavaScript client for the TrucklineMP Public API. It handles base URLs, Bearer authentication, JSON errors, basic 429 retries, and webhook signature verification in Node.js.
+
+The SDK does not replace the [Public API](/guides/developers/public-api/) reference. The OpenAPI spec remains the source of truth for every field and path. The SDK is a convenience layer for Node and modern JavaScript apps.
+
+| | |
+|---|---|
+| Package | `@trucklinemp/sdk` |
+| Registry | [npmjs.com](https://www.npmjs.com/package/@trucklinemp/sdk) |
+| Repository | [github.com/trucklinemp/sdk](https://github.com/trucklinemp/sdk) |
+| License | MIT |
+| Runtime | Node.js 18+ (global `fetch`) |
+
+## When to use the SDK
+
+| Use the SDK | Prefer raw HTTP |
+|-------------|-----------------|
+| Node bots, workers, backends | Browser-only snippets you want fully inline |
+| You want typed errors and retries | One-off curl tests |
+| You verify webhooks in Node | Non-Node webhook receivers |
+
+You can always call the same endpoints with `fetch` or curl. See [Public API](/guides/developers/public-api/).
+
+## Install
+
+Published on the **public npm registry**.
+
+```bash
+npm install @trucklinemp/sdk
+```
+
+No custom registry or GitHub token is required for install.
+
+## Quick start
+
+1. Enable Developer Mode and create a project in the [Developer Console](https://trucklinemp.com/developer).
+2. Create an API key and store the secret (`tlmp_api_...`).
+3. Call the API:
+
+```ts
+import { Truckline, TrucklineError } from "@trucklinemp/sdk";
+
+const tl = new Truckline({
+  apiKey: process.env.TRUCKLINE_API_KEY,
+});
+
+const version = await tl.meta.version();
+const vtcs = await tl.vtcs.list({ limit: 10 });
+
+try {
+  await tl.users.get("some-handle");
+} catch (err) {
+  if (err instanceof TrucklineError) {
+    console.error(err.status, err.code, err.requestId, err.message);
+  }
+}
+```
+
+## Configuration
+
+```ts
+new Truckline({
+  apiKey: "tlmp_api_...",
+  baseUrl: undefined,        // optional; defaults to https://api.trucklinemp.com
+  timeoutMs: 30_000,
+  maxRetries: 1,             // retries on HTTP 429
+  headers: {},               // extra headers on every request
+  userAgent: "my-integration/1.0",
+});
+```
+
+### Base URL
+
+| Option | Base URL |
+|--------|----------|
+| Default | `https://api.trucklinemp.com` |
+| `baseUrl: "http://localhost:3000/api/v1"` | Local Web app |
+
+Do not add an extra `/v1` path segment on `api.trucklinemp.com`. That hostname already routes to the v1 API. Details: [Public API base URLs](/guides/developers/public-api/#base-urls).
+
+## Resources
+
+Methods return the JSON body from the API. Shapes match the OpenAPI responses.
+
+### Platform and meta
+
+```ts
+await tl.meta.version();
+await tl.meta.status();
+await tl.meta.stats();
+await tl.meta.partners();
+await tl.meta.rules();
+await tl.meta.session();
+await tl.meta.recruitmentOpen();
+```
+
+### VTCs
+
+```ts
+await tl.vtcs.list({ limit: 20 });
+await tl.vtcs.get("handle-or-id");
+await tl.vtcs.members("handle-or-id");
+await tl.vtcs.news(vtcId);
+await tl.vtcs.events(vtcId);
+await tl.vtcs.roles(vtcId);
+await tl.vtcs.gallery(vtcId);
+await tl.vtcs.tier(vtcId);
+await tl.vtcs.liveEvents(vtcId);
+await tl.vtcs.upcomingEvents(vtcId);
+await tl.vtcs.batch([1, 2, 3]);
+```
+
+### Events, users, news, bans
+
+```ts
+await tl.events.list();
+await tl.events.get(eventId);
+await tl.events.attendees(eventId);
+await tl.events.slots(eventId);
+
+await tl.users.search({ q: "query" });
+await tl.users.get("handle-or-id");
+await tl.users.batch(["id1", "id2"]);
+await tl.users.bans(userId);
+await tl.users.events(userId);
+
+await tl.news.list();
+await tl.news.get(newsId);
+
+await tl.bans.list();
+await tl.bans.get(banId);
+```
+
+### Programs and game
+
+```ts
+await tl.programs.badge("slug");
+await tl.programs.recognition();
+await tl.game.servers();
+```
+
+### Escape hatch
+
+```ts
+await tl.get("/version");
+await tl.request("GET", "/vtcs", { query: { limit: 5 } });
+```
+
+## Errors and rate limits
+
+Non-success HTTP responses throw `TrucklineError`:
+
+| Field | Description |
+|-------|-------------|
+| `status` | HTTP status code (`0` for network or timeout) |
+| `code` | API error code when provided |
+| `requestId` | Id for debugging and support |
+| `retryAfter` | Seconds from `Retry-After` when present |
+| `details` | Optional extra data from the API |
+
+Convenience flags: `isRateLimited`, `isNotFound`, `isUnauthorized`, `isForbidden`.
+
+On `429`, the client waits for `Retry-After` (or 1 second) and retries up to `maxRetries` times (default `1`). Disable with `maxRetries: 0`.
+
+For limit tables and tiers, see [Rate limits](/guides/developers/public-api/#rate-limits).
+
+## Webhook verification
+
+In Node.js you can verify deliveries without hand-rolling HMAC:
+
+```ts
+import { verifyWebhookSignature } from "@trucklinemp/sdk";
+
+const valid = verifyWebhookSignature(
+  rawBody,
+  request.headers.get("x-trucklinemp-signature"),
+  process.env.WEBHOOK_SECRET!,
+);
+```
+
+Pass the **raw** request body string or buffer. Do not re-serialize JSON before verifying.
+
+Delivery format, headers, retries, and events: [Webhooks](/guides/developers/webhooks/).
+
+## Relationship to the console and OpenAPI
+
+| Tool | Role |
+|------|------|
+| [Developer Console](https://trucklinemp.com/developer) | Keys, projects, playground, analytics |
+| [OpenAPI / ReDoc / Swagger](https://trucklinemp.com/developers) | Full endpoint and schema reference |
+| `@trucklinemp/sdk` | Typed client for common resources |
+
+Recommended flow for new integrators:
+
+1. Read [Platform Overview](/guides/developers/overview/).
+2. Create a project and key in the console.
+3. Install the SDK or use the playground.
+4. Use OpenAPI when you need exact response fields.
+
+## Versioning
+
+The package follows semantic versioning for the **client API** (method names, option shapes, error class). Server response fields can evolve independently; prefer defensive parsing for optional fields.
+
+Breaking SDK changes ship as major versions. Check the GitHub repository releases for notes.
+
+## Privacy
+
+API calls made with your key are subject to the same logging and rate limiting as direct HTTP traffic. See the [Privacy Policy](https://id.trucklinemp.com/legal/privacy) and the telemetry notes in the [Public API](/guides/developers/public-api/) guide.
+
+## Related guides
+
+| Guide | Topics |
+|-------|--------|
+| [Platform Overview](/guides/developers/overview/) | Enable developer mode, choose integration type |
+| [Public API](/guides/developers/public-api/) | Auth, base URLs, rate limits, endpoint map |
+| [Webhooks](/guides/developers/webhooks/) | Events, signatures, retries |
+| [Developer Console](/guides/developers/console/) | Projects, keys, quotas, playground |
+| [Leaked API Keys & Secrets](/guides/developers/leaked-secrets/) | Rotate keys after exposure |

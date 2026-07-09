@@ -384,6 +384,13 @@ export default defineConfig({
               },
             },
             {
+              slug: "guides/developers/sdk",
+              label: "TypeScript SDK",
+              translations: {
+                ru: "TypeScript SDK",
+              },
+            },
+            {
               slug: "guides/developers/oauth-apps",
               label: "OAuth Apps",
               translations: {
