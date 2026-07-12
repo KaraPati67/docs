@@ -112,6 +112,7 @@ export default defineConfig({
               translations: {
                 pl: "Wytyczne Malowania VTC",
                 ru: "Правила оформления окрасок VTC",
+                de: "VTC-Lackierungsrichtlinien",
               },
             },
           ],
