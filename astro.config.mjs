@@ -197,6 +197,7 @@ export default defineConfig({
               translations: {
                 pl: "Weryfikacja Discord",
                 ru: "Верификация Discord",
+                de: "VTC-Discord-Server-Verifizierung",
               },
             },
             {
