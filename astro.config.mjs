@@ -94,6 +94,7 @@ export default defineConfig({
               translations: {
                 pl: "Rola Discord Zweryfikowanego VTC",
                 ru: "Роль Discord верифицированного VTC",
+                de: "Verifizierte VTC-Discord-Rolle",
               },
             },
             {
@@ -111,6 +112,7 @@ export default defineConfig({
               translations: {
                 pl: "Wytyczne Malowania VTC",
                 ru: "Правила оформления окрасок VTC",
+                de: "VTC-Lackierungsrichtlinien",
               },
             },
           ],
@@ -197,6 +199,7 @@ export default defineConfig({
               translations: {
                 pl: "Weryfikacja Discord",
                 ru: "Верификация Discord",
+                de: "VTC-Discord-Server-Verifizierung",
               },
             },
             {
